@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" data-aos="fade-up">
+    <div class="glass-card">
+        <div class="header-section">
+            <h1 style="color:var(--primary)">Crop <span style="color:#333">Predictor</span></h1>
+            <p>Fill in the soil and environmental parameters to generate a recommendation.</p>
+        </div>
+
+        <form action="/predict" method="post" class="prediction-form">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label>Nitrogen (N)</label>
+                    <input type="number" step="any" name="N" placeholder="e.g. 90" required>
+                </div>
+                <div class="input-group">
+                    <label>Phosphorus (P)</label>
+                    <input type="number" step="any" name="P" placeholder="e.g. 42" required>
+                </div>
+                <div class="input-group">
+                    <label>Potassium (K)</label>
+                    <input type="number" step="any" name="K" placeholder="e.g. 43" required>
+                </div>
+                <div class="input-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" step="any" name="temp" placeholder="e.g. 21" required>
+                </div>
+                <div class="input-group">
+                    <label>Humidity (%)</label>
+                    <input type="number" step="any" name="hum" placeholder="e.g. 82" required>
+                </div>
+                <div class="input-group">
+                    <label>Soil pH</label>
+                    <input type="number" step="any" name="ph" placeholder="e.g. 6.5" required>
+                </div>
+                <div class="input-group">
+                    <label>Rainfall (mm)</label>
+                    <input type="number" step="any" name="rain" placeholder="e.g. 200" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Generate Result</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-display" data-aos="zoom-in">
+            <div class="divider"></div>
+            <h3>Recommended: <span class="highlight">{{ prediction_text | upper }}</span></h3>
+            
+            <div class="chart-flex-container">
+                <div class="chart-wrapper">
+                    <canvas id="soilRadar"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const ctx = document.getElementById('soilRadar').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Nitrogen', 'Phosphorus', 'Potassium', 'pH (x10)', 'Humidity'],
+                    datasets: [{
+                        label: 'Soil Profile',
+                        data: [{{input_data[0]}}, {{input_data[1]}}, {{input_data[2]}}, {{input_data[5]}}*10, {{input_data[4]}}],
+                        backgroundColor: 'rgba(255, 140, 0, 0.2)',
+                        borderColor: '#FF8C00',
+                        pointBackgroundColor: '#FF8C00'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { beginAtZero: true } }
+                }
+            });
+        </script>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

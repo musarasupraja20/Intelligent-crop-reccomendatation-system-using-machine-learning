@@ -1,0 +1,13 @@
+# Data Manipulation and Analysis
+pandas
+numpy
+
+# Machine Learning and Evaluation
+scikit-learn
+
+# Web Framework
+flask
+
+# Visualization (Optional for local testing)
+matplotlib
+seaborn

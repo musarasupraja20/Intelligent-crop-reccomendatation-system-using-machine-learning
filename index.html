@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" data-aos="fade-up">
+    <div class="glass-card split-layout">
+        <div class="text-side">
+            <h1>Intelligent <span style="color:var(--primary)">Crop Recommendation</span></h1>
+            <p>Predict the most suitable crop for your farm using environmental data and machine learning. We achieve 99% accuracy across 22 different crop types.</p>
+            <a href="/predictor" class="btn-primary" style="display:inline-block; text-decoration:none;">Open Predictor</a>
+        </div>
+        <div class="image-side">
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80" alt="Sustainable Farming">
+        </div>
+    </div>
+</div>
+{% endblock %}

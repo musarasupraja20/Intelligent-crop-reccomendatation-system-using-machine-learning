@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="glass-card" data-aos="fade-right">
+        <h2>Our Methodology</h2>
+        <p>This project leverages three high-performance algorithms as per research standards:</p>
+        
+        <div class="split-layout" style="margin-top: 30px;">
+            <div class="text-side">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--primary)">K-Nearest Neighbors (KNN)</h4>
+                    <p>Classifies crops based on historical soil similarities.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--primary)">Support Vector Machine (SVM)</h4>
+                    <p>Creates optimal boundaries for multi-dimensional crop data.</p>
+                </div>
+                <div style="background:rgba(255,140,0,0.1); padding:15px; border-radius:10px;">
+                    <h4 style="color:var(--primary)">Random Forest (99% Accurate)</h4>
+                    <p>An ensemble model that provides the final high-precision recommendation.</p>
+                </div>
+            </div>
+            <div class="image-side">
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" alt="Agriculture Data">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
